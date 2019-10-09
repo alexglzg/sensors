@@ -1,0 +1,12 @@
+<launch>
+
+    <node pkg="sensors" type="dynamicmodel_s" name="dynamicmodel_s" />
+
+    <node pkg="sensors" type="backstepping_controller_c.py" name="backstepping_controller_c" />
+
+    <node pkg="sensors" type="cs_vh_2.py" name="cs_vh_2" />
+
+    <!--Launch rosbag to record topics -->
+    <node type="record" pkg="rosbag" name="recorder" args="record -a -o /home/alex/catkin_ws/src/sensors/bags/sim/bc_0,7_speed_0,1_heading" />
+
+</launch>

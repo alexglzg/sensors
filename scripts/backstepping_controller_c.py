@@ -198,12 +198,13 @@ class Controller:
 
 def main():
     rospy.init_node(NODE_NAME_THIS, anonymous=False, disable_signals=False)
+    rate = rospy.Rate(50) # 100hz
     rospy.loginfo("Test node running")
     C = Controller()
     C.start_pose
-    while C.activated:
+    while not rospy.is_shutdown() and C.activated:
         C.run(C.u_d, C.psi_d)
-        time.sleep(0.1)
+        rate.sleep()
     rospy.spin()
 if __name__ == "__main__":
     try:

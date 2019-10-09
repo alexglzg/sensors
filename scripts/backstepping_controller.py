@@ -199,9 +199,9 @@ def main():
     rospy.loginfo("Test node running")
     C = Controller()
     C.start_pose
-    while C.activated:
+    while not rospy.is_shutdown() and C.activated:
         C.run(C.u_d, C.psi_d)
-        time.sleep(0.1)
+        time.sleep(0.01)
     rospy.spin()
 if __name__ == "__main__":
     try:

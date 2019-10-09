@@ -2,13 +2,15 @@
 
     <node pkg="sensors" type="imu" name="imu" />
 
-    <node pkg="sensors" type="backstepping_controller.py" name="backstepping_controller" />
+    <node pkg="sensors" type="asmc" name="asmc" />
 
-    <node pkg="sensors" type="motors.py" name="motors" />
+    <node pkg="sensors" type="ardumotors.py" name="ardumotors" />
 
     <node pkg="sensors" type="cs_ch_2.py" name="cs_ch_2" />
 
+    <node pkg="rosserial_python" type="serial_node.py" name="serial_node" args = "/dev/ttyUSB1" />
+
     <!--Launch rosbag to record topics -->
-    <node type="record" pkg="rosbag" name="recorder" args="record -a -o /home/alex/catkin_ws/src/sensors/bags/SpeedAndHeading/1_speed_ref_heading" />
+    <node type="record" pkg="rosbag" name="recorder" args="record -a -o /home/alex/catkin_ws/src/sensors/bags/asmc/1_speed_ref_heading" />
 
 </launch>

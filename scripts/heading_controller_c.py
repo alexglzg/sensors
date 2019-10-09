@@ -80,7 +80,7 @@ class Controller:
 
     def dheading_callback(self, d_heading):
         self.psi_d = d_heading.data
-	rospy.logwarn("psi_d %f", self.psi_d)
+        #rospy.logwarn("psi_d %f", self.psi_d)
 
     def dthrust_callback(self, d_thrust):
         self.tx_d = d_thrust.data
@@ -157,6 +157,10 @@ class Controller:
         elif self.T_stbd < -30:
             self.T_stbd = -20
 
+        if self.T_x == 0:
+            self.T_stbd = 0
+            self.T_port = 0
+
 #Controller outputs
         self.right_thruster_pub.publish(self.T_stbd)
         self.left_thruster_pub.publish(self.T_port)
@@ -171,9 +175,9 @@ def main():
     rospy.loginfo("Test node running")
     C = Controller()
     C.start_pose
-    while C.activated:
+    while not rospy.is_shutdown() and C.activated:
         C.run(C.tx_d, C.psi_d)
-        time.sleep(0.1)
+        time.sleep(0.01)
     rospy.spin()
 if __name__ == "__main__":
     try:

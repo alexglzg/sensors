@@ -9,6 +9,6 @@
     <node pkg="sensors" type="cs_GPSh_mp.py" name="cs_GPSh_mp" />
 
     <!--Launch rosbag to record topics -->
-    <node type="record" pkg="rosbag" name="recorder" args="record -a -o /home/alex/catkin_ws/src/sensors/bags/CompensatorSaH/0,5_speed_GPSm_heading" />
+    <node type="record" pkg="rosbag" name="recorder" args="record -a -o /home/alex/catkin_ws/src/sensors/bags/bc/0,5_speed_GPSm_heading" />
 
 </launch>
